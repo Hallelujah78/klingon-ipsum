@@ -192,9 +192,11 @@ ul {
 /* alerts */
 .alert {
     padding: var(--padding);
-    margin-bottom: 1rem;
+
     border-color: transparent;
     border-radius: var(--borderRadius);
+    min-height: 3rem;
+    width: 100%;
 }
 
 .alert-danger {
@@ -288,7 +290,7 @@ ul {
 }
 
 .section-center {
-    margin: 5rem auto;
+    margin: 5rem auto 1rem auto;
     max-width: 85vw;
     display: grid;
     justify-content: space-around;

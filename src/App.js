@@ -34,6 +34,8 @@ function App() {
         "danger",
         alertRef.current
       );
+    } else {
+      displayAlert("Qapla' - Success!", "success", alertRef.current);
     }
   };
 
