@@ -5,6 +5,7 @@ import { Loading } from "./components/Loading";
 import { Error } from "./components/Error";
 import { Footer } from "./components/Footer";
 import "./styles/main.css";
+import Paragraph from "./components/Paragraph";
 const url =
   "https://51da59d1-d13c-47cf-a520-6486e16c9a70.mock.pstmn.io/v1/home/klingon";
 
@@ -66,7 +67,7 @@ function App() {
         </section>
         <div className="text">
           {paragraphs.map((paragraph, index) => {
-            return <p key={index}>{paragraph}</p>;
+            return <Paragraph paragraph={paragraph} />;
           })}
         </div>
       </div>
