@@ -1,4 +1,7 @@
+// react
 import { useEffect, useState } from "react";
+
+// utils
 import { getLocalStorage, setLocalStorage } from "./utils";
 
 export const useFetch = (url) => {

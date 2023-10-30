@@ -1,6 +1,10 @@
-import { v4 as uuidv4 } from "uuid";
+import PropTypes from "prop-types";
 
 const Paragraph = ({ paragraph }) => {
-  return <p key={uuidv4()}>{paragraph}</p>;
+  return <p>{paragraph}</p>;
 };
 export default Paragraph;
+
+Paragraph.propTypes = {
+  paragraph: PropTypes.arrayOf(PropTypes.string),
+};
