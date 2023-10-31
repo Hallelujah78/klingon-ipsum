@@ -1,6 +1,7 @@
 {
   "name": "Klingon Ipsum",
   "short_name": "Klingon Ipsum",
+  "theme_color": "#875a75",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#fff",
@@ -51,6 +52,11 @@
       "sizes": "48x48",
       "type": "image/png",
       "purpose": "maskable"
+    },
+    {
+      "src": "Image.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 }

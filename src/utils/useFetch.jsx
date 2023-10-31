@@ -21,7 +21,6 @@ export const useFetch = (url) => {
           setDictionary(dict.klingon);
           setLocalStorage("klingon", dict.klingon);
         } else {
-          console.log(response.text, response.statusText);
           setIsError(true);
         }
       }

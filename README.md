@@ -2,6 +2,15 @@ Created with CRA and migrated to Vite.
 
 Klingon Ipsum is a simple React project to create random paragraphs of Klingon text. Each sentence is of random length, between 5 and 16 words long. Each paragraph is of random length, between 5 and 7 sentences in length. Paragraphs of less than 2 sentences are appended to the previous paragraph. Inspired by Hipster Ipsum.
 
+Changes 31/10/23
+
+- Updated README.md
+- Added vite-plugin-pwa
+- Updated styles to increased accessibility
+- Removed console.logs to decrease horribility
+- Added display swap to Google Fonts URL to avoid FOIT for CLS
+- Added 512x512 png for PWA Lighthouse checks
+
 Changes 30/10/23
 
 - Updated README.md

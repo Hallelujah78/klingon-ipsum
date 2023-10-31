@@ -1,5 +1,5 @@
 /* fonts */
-@import url("https://fonts.googleapis.com/css?family=Karla:400|Spectral:400");
+@import url("https://fonts.googleapis.com/css?family=Karla:400|Spectral:400&display=swap");
 
 *,
 ::after,
@@ -156,7 +156,7 @@ ul {
     display: inline-block;
     cursor: pointer;
     color: var(--white);
-    background: var(--primary-300);
+    background: var(--primary-400);
     border: transparent;
     border-radius: var(--borderRadius);
     letter-spacing: var(--letterSpacing);
@@ -351,20 +351,21 @@ footer {
     width: 100%;
     height: calc(100vh - 5rem - 75vh);
     text-align: center;
-    background-color: var(--primary-300);
+    background-color: var(--primary-400);
 }
 
 footer p {
     margin-bottom: 0rem;
+    color: white;
 }
 
 footer a {
-    color: var(--grey-300);
+    color: var(--grey-100);
     transition: var(--transition);
 }
 
 footer a:hover {
-    color: var(--grey-200);
+    color: white;
 }
 
 .section-error {

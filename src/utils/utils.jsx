@@ -88,7 +88,7 @@ export const createParagraphs = (textArray) => {
 
   //
   const text = [];
-  console.log(textArray);
+
   paragraphLengths.every((length) => {
     let tempString = "";
 
