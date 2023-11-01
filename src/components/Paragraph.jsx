@@ -6,5 +6,5 @@ const Paragraph = ({ paragraph }) => {
 export default Paragraph;
 
 Paragraph.propTypes = {
-  paragraph: PropTypes.arrayOf(PropTypes.string),
+  paragraph: PropTypes.string,
 };
