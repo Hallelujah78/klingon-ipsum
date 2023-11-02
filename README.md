@@ -5,6 +5,16 @@ Klingon Ipsum is a simple React project to create random paragraphs of Klingon t
 Changes 1/11/23
 
 - Updated README.md
+- I guess the CPU spike/lag is happening because the entire DOM is being rerendered every time you update the state
+  - Doctor ChatGPT prescribes 'react-virtualized' or 'react-window'
+- I tried lodash debounce to debounce the input, so state was only updated when you finish typing
+  - this actually worked until you stop typing
+  - if you type part of what you want and then pause and try to keep typing, it is still obvious that there is horrible lag
+  - on the bright side, it is obviously the state update triggering the rerender that is the performance issue and so react-window or pagination is the answer
+
+Changes 1/11/23
+
+- Updated README.md
 - Took the code to generate a word array, sentence lengths, add punctuation and generate paragraphs and made it async.
 - The project is a bit of a mess right now, but I've added multiple temporary progress bars and the performance is good with async code
 - One issue that was harming performance was a 'Forced reflow while executing JavaScript' violation warning
