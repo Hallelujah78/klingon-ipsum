@@ -81,11 +81,7 @@ export const generateParagraphs = async (text, setProgressParagraphs) => {
     //********* 0 - number of sentences generated is less than 2 ******/
   }
 
-  setWords("");
-  setText("");
-  setLengths([]);
   setProgressParagraphs(100);
-  setParagraphs(tempText); // text is an array where each element is a number of sentences comprising a paragraph
 
-  setRenderParagraphs(true);
+  return tempText;
 };

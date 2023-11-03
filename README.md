@@ -2,7 +2,16 @@ Created with CRA and migrated to Vite.
 
 Klingon Ipsum is a simple React project to create random paragraphs of Klingon text. Each sentence is of random length, between 5 and 16 words long. Each paragraph is of random length, between 5 and 7 sentences in length. Paragraphs of less than 2 sentences are appended to the previous paragraph. Inspired by Hipster Ipsum.
 
-Changes 1/11/23
+## Changes 3/11/23
+
+- Updated README.md
+- moved generateParagraphs out of App.jsx and into a separate file in utils
+  - it takes setProgressParagraphs as an arg now and returns tempText, which is an array of paragraphs
+- moved generateSentenceLengths out of App.jsx and into separate file in utils
+- moved generatePunctuation out of App.jsx into utils
+- moved generateWordArray.js out of App.jsx into utils
+
+## Changes 2/11/23
 
 - Updated README.md
 - I guess the CPU spike/lag is happening because the entire DOM is being rerendered every time you update the state
@@ -12,7 +21,7 @@ Changes 1/11/23
   - if you type part of what you want and then pause and try to keep typing, it is still obvious that there is horrible lag
   - on the bright side, it is obviously the state update triggering the rerender that is the performance issue and so react-window or pagination is the answer
 
-Changes 1/11/23
+## Changes 1/11/23
 
 - Updated README.md
 - Took the code to generate a word array, sentence lengths, add punctuation and generate paragraphs and made it async.
@@ -25,9 +34,9 @@ Changes 1/11/23
   - useFetch hook is not refetching data on every rerender, and won't by design
 - now, unfortunately, the input is sluggish once text has been generated, so that's the next item to be addressed
   - there is high CPU usage AFTER all my processing is finished and words are being displayed, so that's the issue with input.
-  - example: generating and rendering paragraphs containing 700,000 words. Entering text into the input box is causing the CPU spike.
+  - example: generating and rendering paragraphs containing 700,000 words. Entering text into the input box is causing a CPU spike.
 
-Changes 31/10/23
+## Changes 31/10/23
 
 - Updated README.md
 - Added vite-plugin-pwa
@@ -37,7 +46,7 @@ Changes 31/10/23
 - Added 512x512 png for PWA Lighthouse checks
 - ## Inputting very large numbers of words results in a wait time, so let's make it async with progress bar?
 
-Changes 30/10/23
+## Changes 30/10/23
 
 - Updated README.md
 - Added site.webmanifest.json
@@ -47,7 +56,7 @@ Changes 30/10/23
 - Added eslint
 - Added prop-types
 
-Changes 29/10/23
+## Changes 29/10/23
 
 - Added Paragraph.jsx component to render each paragraph.
 - Added uuid to generate unique keys for each Paragraph child element.
@@ -60,4 +69,3 @@ Changes 29/10/23
 - each word has to be added to an array
 - if we have 100 words, 1 word and a space represents 1% of progress
 - we probably want to limit the number of rerenders but let's ignore it for now
--
