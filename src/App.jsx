@@ -121,28 +121,13 @@ function App() {
   return (
     <>
       <progress value={progress} max="100" />
-      <button onClick={() => wordHandler(setProgress, dictionary, words)}>
-        Promise
-      </button>
       <p>Generating random word list: {progress}% Complete</p>
       <progress value={progressLengths} max="100" />
-      <button onClick={() => sentenceLengthHandler(setProgressLengths, words)}>
-        Promise
-      </button>
+
       <p>Generating sentence lengths: {progressLengths}% Complete</p>
       <progress value={progressPunctuation} max="100" />
-      <button
-        onClick={() =>
-          punctuationHandler(setProgressPunctuation, lengths, text)
-        }
-      >
-        Promise
-      </button>
       <p>Generating punctuation: {progressPunctuation}% Complete</p>
       <progress value={progressParagraphs} max="100" />
-      <button onClick={() => paragraphHandler(text, setProgressParagraphs)}>
-        Promise
-      </button>
       <p>Generating paragraphs: {progressParagraphs}% Complete</p>
       <div className="app">
         <section className="section-center">
