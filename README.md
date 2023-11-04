@@ -4,6 +4,8 @@ Klingon Ipsum is a simple React project to create random paragraphs of Klingon t
 
 ## Next Commit
 
+Fixed issue where all of the if statements in generateParagraphs were being executed on every iteration of the for loop, but they were mutually exclusive. This happened when I changed from using .every to using a for loop.
+
 ## Changes 4/11/23
 
 - Updated README.md
@@ -11,6 +13,7 @@ Klingon Ipsum is a simple React project to create random paragraphs of Klingon t
 - the uuid is being recalculated every time the user inputs a number into the input box ... DOH!
 - Removed lodash - no longer using debounce
 - Added generateUuids to utils. Now our keys, UUIDs, are no longer calculated when rendering.
+- Fixed issue when generating paragraphs that was introduced when I stopped using .every and switched to using a for loop.
 
 ## Changes 3/11/23
 

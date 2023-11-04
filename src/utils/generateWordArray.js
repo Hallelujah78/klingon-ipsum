@@ -2,33 +2,19 @@ import { generateRandomNumber } from "./utils";
 
 export const generateWordArray = async (setProgress, dictionary, words) => {
   const maxProgress = 100;
-  const batchSize = Math.floor(words / 100);
+  const batchSize = Math.floor((words * 2) / 100);
 
-  let text = [];
+  let text = new Array(words * 2);
+  let period = ".";
+  let space = " ";
 
   // generate the 'text' by adding words and punctuation to an array
-  for (let i = 0; i < words; i++) {
-    //   if (i === 0) {
-    //     text.push(dictionary[generateRandomNumber(dictionary)]);
-    //   }
-    //   if (i === words - 1) {
-    //     text.push(".");
-    //   } else {
-    //     text.push(" ");
-    //     text.push(dictionary[generateRandomNumber(dictionary)]);
-    //   }
-
-    if (i !== 0 && i !== words - 1) {
-      text.push(" ");
-      text.push(dictionary[generateRandomNumber(dictionary)]);
-    } else if (i === words - 1) {
-      text.push(".");
-    } else {
-      text.push(dictionary[generateRandomNumber(dictionary)]);
-    }
+  for (let i = 0; i < words * 2; i = i + 2) {
+    text[i] = dictionary[generateRandomNumber(dictionary)];
+    text[i + 1] = space;
 
     if (i % batchSize === 0) {
-      const newProgress = Math.floor((i / words) * maxProgress);
+      const newProgress = Math.floor((i / (words * 2)) * maxProgress);
       setProgress(newProgress);
 
       await new Promise((resolve) => setTimeout(resolve, 0));
@@ -36,5 +22,7 @@ export const generateWordArray = async (setProgress, dictionary, words) => {
   }
   //end of generating the text array
   setProgress(100);
+  text.pop();
+  text.push(period);
   return text;
 };

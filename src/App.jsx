@@ -46,45 +46,46 @@ function App() {
   }, []);
 
   const handleClick = async () => {
-    setRenderParagraphs(false);
-    setParagraphs([]);
-    setUuids([]);
-    // words
-    const wordArray = await generateWordArray(setProgress, dictionary, words);
-
-    // sentence lengths
-    const lengthsArray = await generateSentenceLengths(
-      setProgressLengths,
-      words
-    );
-
-    // punctuation
-    const punctuatedText = await generatePunctuation(
-      setProgressPunctuation,
-      lengthsArray,
-      wordArray
-    );
-
-    // paragraphs
-    const paragraphs = await generateParagraphs(
-      punctuatedText,
-      setProgressParagraphs
-    );
-
-    // uuids
-    const uuids = generateUuids(paragraphs);
-    setUuids(uuids);
-    setParagraphs(paragraphs);
-    setRenderParagraphs(true);
-    setWords("");
     if (!parseInt(words) || parseInt(words) <= 0) {
       displayAlert(
         "please enter a positive number",
         "danger",
         alertRef.current
       );
-    } else {
+      return;
+    }
+    setRenderParagraphs(false);
+    setParagraphs(null);
+    setUuids(null);
+    // words
+    let wordArray = await generateWordArray(setProgress, dictionary, words);
+
+    // sentence lengths
+    let lengthsArray = await generateSentenceLengths(setProgressLengths, words);
+
+    // punctuation
+    let punctuatedText = await generatePunctuation(
+      setProgressPunctuation,
+      lengthsArray,
+      wordArray
+    );
+    wordArray = null;
+
+    // paragraphs
+    let paragraphs = await generateParagraphs(
+      punctuatedText,
+      setProgressParagraphs
+    );
+    punctuatedText = null;
+
+    // uuids
+    const uuids = generateUuids(paragraphs);
+    setUuids(uuids);
+    setParagraphs(paragraphs);
+
+    if (paragraphs) {
       displayAlert("Qapla' - Success!", "success", alertRef.current);
+      setRenderParagraphs(true);
     }
   };
 

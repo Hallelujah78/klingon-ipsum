@@ -3,13 +3,13 @@ export const generatePunctuation = async (
   lengths,
   text
 ) => {
-  const tempLengths = [...lengths];
-  const tempText = [...text];
+  const tempLengths = lengths; // tempLengths are sentence lengths
+  const tempText = text; // an array
   // start of adding punctuation
   const maxProgressPunctuation = 100;
   let totalLength = 0;
-  const lengthsLength = tempLengths.length;
-  const batchSizePunctuation = Math.floor(lengthsLength / 100);
+  const lengthsLength = tempLengths.length; // number of sentence lengths
+  const batchSizePunctuation = Math.floor(lengthsLength / 100); // 1% of the sentence lengths - to update progress
 
   const textLength = tempText.length - 1;
 
@@ -24,11 +24,13 @@ export const generatePunctuation = async (
       await new Promise((resolve) => setTimeout(resolve, 0));
     }
 
-    let remainingLength = textLength - totalLength;
+    let remainingLength = textLength - totalLength - 1;
 
     // if remaining length of text array is less than or equal to current sentence length * 2 (allow for spaces), break
+    // here we are saying that there is no need to add a period into tempText if remaining length is less than or equal (because we have a final full stop from the initial word array creation step)
     if (remainingLength <= tempLengths[i] * 2) {
       setProgressPunctuation(100);
+
       return tempText;
     }
 
@@ -39,5 +41,6 @@ export const generatePunctuation = async (
     totalLength = totalLength + tempLengths[i] * 2;
   }
   setProgressPunctuation(100);
+  console.log(tempText);
   return tempText;
 };

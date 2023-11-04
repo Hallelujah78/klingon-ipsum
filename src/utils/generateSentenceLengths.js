@@ -6,9 +6,9 @@ export const generateSentenceLengths = async (setProgressLengths, words) => {
   const batchSizeLengths = Math.floor(words / sentenceLength[0] / 100);
 
   // start of generate an array of sentence lengths
-  const lengths = [];
+  const lengths = new Int8Array(words / sentenceLength[0] / 2);
   for (let i = 0; i <= words / sentenceLength[0] / 2; i++) {
-    lengths.push(sentenceLength[generateRandomNumber(sentenceLength)]);
+    lengths[i] = sentenceLength[generateRandomNumber(sentenceLength)];
 
     if (i % batchSizeLengths === 0) {
       const newProgress = Math.floor(
