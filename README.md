@@ -2,6 +2,16 @@ Created with CRA and migrated to Vite.
 
 Klingon Ipsum is a simple React project to create random paragraphs of Klingon text. Each sentence is of random length, between 5 and 16 words long. Each paragraph is of random length, between 5 and 7 sentences in length. Paragraphs of less than 2 sentences are appended to the previous paragraph. Inspired by Hipster Ipsum.
 
+## Next Commit
+
+## Changes 4/11/23
+
+- Updated README.md
+- Removed click handlers from App.jsx for the individual steps of generating words, sentence lengths, sentences and paragraphs. This is all done in a single click handler
+- the uuid is being recalculated every time the user inputs a number into the input box ... DOH!
+- Removed lodash - no longer using debounce
+- Added generateUuids to utils. Now our keys, UUIDs, are no longer calculated when rendering.
+
 ## Changes 3/11/23
 
 - Updated README.md
@@ -44,7 +54,7 @@ Klingon Ipsum is a simple React project to create random paragraphs of Klingon t
 - Removed console.logs to decrease horribility
 - Added display swap to Google Fonts URL to avoid FOIT for CLS
 - Added 512x512 png for PWA Lighthouse checks
-- ## Inputting very large numbers of words results in a wait time, so let's make it async with progress bar?
+- Inputting very large numbers of words results in a wait time, so let's make it async with progress bar?
 
 ## Changes 30/10/23
 

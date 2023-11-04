@@ -2,7 +2,6 @@
 import { useState, useRef, useEffect } from "react";
 
 // libraries
-import { v4 as uuidv4 } from "uuid";
 
 // utils
 import { displayAlert } from "./utils/utils";
@@ -10,6 +9,7 @@ import { generateParagraphs } from "./utils/generateParagraphs.js";
 import { generateSentenceLengths } from "./utils/generateSentenceLengths.js";
 import { generatePunctuation } from "./utils/generatePunctuation.js";
 import { generateWordArray } from "./utils/generateWordArray.js";
+import { generateUuids } from "./utils/generateUuids.js";
 
 // custom hooks
 import { useFetch } from "./utils/useFetch";
@@ -31,14 +31,13 @@ function App() {
   const alertRef = useRef(null);
   const [words, setWords] = useState("");
   const [paragraphs, setParagraphs] = useState([]);
-  const [text, setText] = useState("");
   const { isLoading, dictionary, isError } = useFetch(url);
   const [progress, setProgress] = useState(0);
   const [progressLengths, setProgressLengths] = useState(0);
   const [progressPunctuation, setProgressPunctuation] = useState(0);
   const [progressParagraphs, setProgressParagraphs] = useState(0);
-  const [lengths, setLengths] = useState([]);
   const [renderParagraphs, setRenderParagraphs] = useState(true);
+  const [uuids, setUuids] = useState([]);
 
   useEffect(() => {
     if (!isLoading && !isError) {
@@ -46,43 +45,10 @@ function App() {
     }
   }, []);
 
-  const paragraphHandler = async (text, setProgressParagraphs) => {
-    const arrayOfParagraphs = await generateParagraphs(
-      text,
-      setProgressParagraphs
-    );
-    setParagraphs(arrayOfParagraphs);
-    setRenderParagraphs(true);
-  };
-
-  const sentenceLengthHandler = async (setProgressLengths, words) => {
-    const sentenceLengths = await generateSentenceLengths(
-      setProgressLengths,
-      words
-    );
-    setLengths(sentenceLengths);
-  };
-
-  const punctuationHandler = async (setProgressPunctuation, lengths, text) => {
-    const punctuatedText = await generatePunctuation(
-      setProgressPunctuation,
-      lengths,
-      text
-    );
-    setText(punctuatedText);
-  };
-
-  const wordHandler = async (setProgress, dictionary, words) => {
-    setRenderParagraphs(false);
-    const wordArray = await generateWordArray(setProgress, dictionary, words);
-    setText(wordArray);
-  };
-
   const handleClick = async () => {
     setRenderParagraphs(false);
-    setLengths([]);
-    setText("");
     setParagraphs([]);
+    setUuids([]);
     // words
     const wordArray = await generateWordArray(setProgress, dictionary, words);
 
@@ -104,9 +70,13 @@ function App() {
       punctuatedText,
       setProgressParagraphs
     );
+
+    // uuids
+    const uuids = generateUuids(paragraphs);
+    setUuids(uuids);
     setParagraphs(paragraphs);
     setRenderParagraphs(true);
-
+    setWords("");
     if (!parseInt(words) || parseInt(words) <= 0) {
       displayAlert(
         "please enter a positive number",
@@ -148,8 +118,8 @@ function App() {
         </section>
         {renderParagraphs ? (
           <div className="text">
-            {paragraphs.map((paragraph) => {
-              return <Paragraph key={uuidv4()} paragraph={paragraph} />;
+            {paragraphs.map((paragraph, index) => {
+              return <Paragraph key={uuids[index]} paragraph={paragraph} />;
             })}
           </div>
         ) : null}
