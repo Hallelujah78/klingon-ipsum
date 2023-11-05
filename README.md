@@ -4,6 +4,11 @@ Klingon Ipsum is a simple React project to create random paragraphs of Klingon t
 
 ## Next Commit
 
+## Changes 5/11/23
+
+- Fixed issue where we were getting 'undefined' as part of our output paragraphs
+- Final issue arising from 'optimizing' code is we have a single orphaned line that is not being appended to the previous paragraph.
+
 ## Changes 4/11/23
 
 - Updated README.md

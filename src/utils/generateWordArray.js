@@ -24,5 +24,6 @@ export const generateWordArray = async (setProgress, dictionary, words) => {
   setProgress(100);
   text.pop();
   text.push(period);
+
   return text;
 };

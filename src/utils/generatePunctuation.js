@@ -30,7 +30,6 @@ export const generatePunctuation = async (
     // here we are saying that there is no need to add a period into tempText if remaining length is less than or equal (because we have a final full stop from the initial word array creation step)
     if (remainingLength <= tempLengths[i] * 2) {
       setProgressPunctuation(100);
-
       return tempText;
     }
 
@@ -41,6 +40,6 @@ export const generatePunctuation = async (
     totalLength = totalLength + tempLengths[i] * 2;
   }
   setProgressPunctuation(100);
-  console.log(tempText);
+  console.log(tempText.length);
   return tempText;
 };

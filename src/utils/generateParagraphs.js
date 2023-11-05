@@ -9,32 +9,38 @@ export const generateParagraphs = async (text, setProgressParagraphs) => {
   // split our string into an array of sentences and retain the full stops
   const sentenceArray = string.split(/(?<=\.)/);
 
-  // number of sentences in our array
   const numSentences = sentenceArray.length;
-  console.log(numSentences);
 
   // start of generate an array of paragraph lengths
-  const paragraphLengths = new Uint8Array(numSentences / paraLength[0]);
+  const paragraphLengths = new Uint8Array(
+    Math.ceil(numSentences / paraLength[0])
+  );
 
   for (let h = 0; h <= numSentences / paraLength[0]; h++) {
     paragraphLengths[h] = paraLength[generateRandomNumber(paraLength)];
   }
+
   // end of generate an array of paragraph lengths
 
   const paragraphLengthsLength = paragraphLengths.length; // the number of paragraphs
+
   const batchSizeParagraphs = Math.ceil(paragraphLengthsLength / 100);
 
   const tempText = new Array(paragraphLengthsLength); // holds our paragraphs in an array to be returned
+
+  // number of sentences in our array
+  let remainingSentences = sentenceArray.length;
+
   for (let i = 0; i < paragraphLengthsLength; i++) {
     let tempString = ""; // holds our paragraph as we construct it
 
     //******** 1 - paragraph length is smaller than or equal to remaining number of sentences in our sentenceArray *******/
     // if length <= sentenceArray.length
     // then just shift lines from sentenceArray to create a paragraph
-    if (paragraphLengths[i] <= sentenceArray.length) {
+    if (paragraphLengths[i] <= remainingSentences) {
       for (let j = paragraphLengths[i]; j > 0; j--) {
         tempString = tempString + sentenceArray.shift();
-        console.log(tempString);
+        remainingSentences = remainingSentences - 1;
       }
       tempText[i] = tempString;
     }
@@ -43,11 +49,12 @@ export const generateParagraphs = async (text, setProgressParagraphs) => {
     // if length > sentenceArray.length AND sentenceArray.length >= 2
     // then just create a short paragraph and return false
     else if (
-      paragraphLengths[i] > sentenceArray.length &&
-      sentenceArray.length >= 2
+      paragraphLengths[i] > remainingSentences &&
+      remainingSentences >= 2
     ) {
       for (let k = sentenceArray.length; k > 0; k--) {
         tempString = tempString + sentenceArray.shift();
+        remainingSentences = remainingSentences - 1;
       }
 
       tempText[i] = tempString;
@@ -60,16 +67,18 @@ export const generateParagraphs = async (text, setProgressParagraphs) => {
     // then put remaining sentences with previous paragraph if it exists
     // return false
     else if (
-      paragraphLengths[i] > sentenceArray.length &&
-      sentenceArray.length < 2 &&
-      sentenceArray.length > 0
+      paragraphLengths[i] > remainingSentences &&
+      remainingSentences < 2 &&
+      remainingSentences > 0
     ) {
-      for (let l = sentenceArray.length; l > 0; l--) {
-        tempString = tempString + sentenceArray.shift();
-      }
+      console.log(remainingSentences);
+      tempString = sentenceArray.shift();
+      remainingSentences = remainingSentences - 1;
 
-      tempText[tempText.length - 1] =
-        tempText[tempText.length - 1] + tempString;
+      tempText[tempText.length - 1] !== undefined
+        ? (tempText[tempText.length - 1] =
+            tempText[tempText.length - 1] + tempString)
+        : (tempText[i] = tempString);
     }
 
     if (i % batchSizeParagraphs === 0) {
@@ -85,6 +94,5 @@ export const generateParagraphs = async (text, setProgressParagraphs) => {
   }
 
   setProgressParagraphs(100);
-  console.log(tempText);
   return tempText;
 };
