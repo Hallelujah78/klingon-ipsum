@@ -71,13 +71,11 @@ export const generateParagraphs = async (text, setProgressParagraphs) => {
       remainingSentences < 2 &&
       remainingSentences > 0
     ) {
-      console.log(remainingSentences);
       tempString = sentenceArray.shift();
       remainingSentences = remainingSentences - 1;
 
-      tempText[tempText.length - 1] !== undefined
-        ? (tempText[tempText.length - 1] =
-            tempText[tempText.length - 1] + tempString)
+      tempText[i - 1] !== undefined
+        ? (tempText[i - 1] = tempText[i - 1] + tempString)
         : (tempText[i] = tempString);
     }
 
