@@ -40,6 +40,6 @@ export const generatePunctuation = async (
     totalLength = totalLength + tempLengths[i] * 2;
   }
   setProgressPunctuation(100);
-  console.log(tempText.length);
+
   return tempText;
 };

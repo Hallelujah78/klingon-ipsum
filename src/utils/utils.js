@@ -33,7 +33,7 @@ export const generateText = (wordArray, wordCount) => {
 
   let totalLength = 0;
 
-  lengths.every((length, index) => {
+  lengths.every((length) => {
     let remainingLength = text.length - 1 - totalLength;
 
     // if remaining length of text array is less than or equal to current sentence length * 2 (allow for spaces), break

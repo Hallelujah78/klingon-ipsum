@@ -4,6 +4,12 @@ Klingon Ipsum is a simple React project to create random paragraphs of Klingon t
 
 ## Next Commit
 
+Updated eslint config and vite.config.js so eslint is working with React.
+
+## 6/11/23
+
+- Updated eslint config and vite.config.js so eslint is working with React
+
 ## Changes 5/11/23
 
 - Fixed issue where we were getting 'undefined' as part of our output paragraphs
