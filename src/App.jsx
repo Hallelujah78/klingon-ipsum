@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 
 // libraries
+import styled from "styled-components";
 
 // utils
 import { displayAlert } from "./utils/utils";
@@ -36,14 +37,14 @@ function App() {
   const [progress, setProgress] = useState(0);
   const [renderParagraphs, setRenderParagraphs] = useState(true);
   const [uuids, setUuids] = useState([]);
-  const [updateProgress, setUpdateProgress] = useState(false);
+  const [showProgress, setShowProgress] = useState(false);
   const [progressText, setProgressText] = useState("");
 
   useEffect(() => {
     if (!isLoading && !isError) {
       inputRef.current.focus();
     }
-  }, []);
+  }, [isError, isLoading]);
 
   const handleClick = async () => {
     if (!parseInt(words) || parseInt(words) <= 0) {
@@ -58,7 +59,7 @@ function App() {
     setParagraphs(null);
     setUuids(null);
 
-    setUpdateProgress(true);
+    setShowProgress(true);
     setProgressText("Generating random word list ");
     // words
     let wordArray = await generateWordArray(setProgress, dictionary, words);
@@ -92,17 +93,31 @@ function App() {
 
     if (paragraphs) {
       displayAlert("Qapla' - Success!", "success", alertRef.current);
-      setUpdateProgress(false);
+      setShowProgress(false);
       setRenderParagraphs(true);
     }
   };
 
   if (isLoading) {
-    return <Loading />;
+    return (
+      <div className="app">
+        <section className="section-center">
+          <Loading />
+        </section>
+      </div>
+    );
+  } else if (isError) {
+    return (
+      <div className="app">
+        <section className="section-center">
+          <Error />
+        </section>
+      </div>
+    );
   } else {
     return (
       <>
-        <div className="app">
+        <Wrapper className="app">
           <section className="section-center">
             <h1 className="title">Klingon Ipsum</h1>
             <p className="quote">
@@ -121,7 +136,7 @@ function App() {
             </button>
             <div ref={alertRef} className="alert"></div>
             <div className="progress">
-              {updateProgress ? (
+              {showProgress ? (
                 <Progress progress={progress} progressText={progressText} />
               ) : null}
             </div>
@@ -133,7 +148,7 @@ function App() {
               })}
             </div>
           ) : null}
-        </div>
+        </Wrapper>
         <Footer />
       </>
     );
@@ -141,3 +156,5 @@ function App() {
 }
 
 export default App;
+
+const Wrapper = styled.div``;

@@ -1,14 +1,23 @@
 Created with CRA and migrated to Vite.
 
-Klingon Ipsum is a simple React project to create random paragraphs of Klingon text. Each sentence is of random length, between 5 and 16 words long. Each paragraph is of random length, between 5 and 7 sentences in length. Paragraphs of less than 2 sentences are appended to the previous paragraph. Inspired by Hipster Ipsum.
+Klingon Ipsum is a simple React project to create random paragraphs of Klingon text. Each sentence is of random length, between 5 and 16 words long. Each paragraph is of random length, between 5 and 7 sentences in length. Paragraphs of less than 2 sentences are appended to the previous paragraph. Inspired by Hipster Ipsum. Now has a progress bar which is useful if generating a large number of paragraphs, e.g. 5 million-plus words.
+
+## To Do
+
+- add pagination
+  - will address lag caused when rerendering large numbers of paragraphs as we type into the input box
 
 ## Next Commit
-
-Updated eslint config and vite.config.js so eslint is working with React.
 
 ## 6/11/23
 
 - Updated eslint config and vite.config.js so eslint is working with React
+- Updated App.jsx, removed various 'progress' states. Progress.jsx component is rendered based on new boolean state variable 'updateProgress'.
+- Text displayed for the Progress component is passed as a prop.
+- added styles for Progress.jsx.
+- Added Loading and Error logic to App.jsx to render the respective components.
+- Deleted unused code from utils.js.
+- Added styled components to Error, Loading and Progress for basic styling.
 
 ## Changes 5/11/23
 
@@ -85,10 +94,3 @@ Updated eslint config and vite.config.js so eslint is working with React.
 - Added uuid to generate unique keys for each Paragraph child element.
 - Added dist to gitignore
 - Updated README.md
-
-### How to create a progress bar?
-
-- we have a number of words
-- each word has to be added to an array
-- if we have 100 words, 1 word and a space represents 1% of progress
-- we probably want to limit the number of rerenders but let's ignore it for now
