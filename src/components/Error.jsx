@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Error = () => {
+const Error = () => {
   return (
     <Wrapper>
       <section className="section-error">
@@ -14,6 +14,7 @@ export const Error = () => {
     </Wrapper>
   );
 };
+export default Error;
 
 const Wrapper = styled.div`
   a {

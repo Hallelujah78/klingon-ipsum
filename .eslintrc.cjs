@@ -1,4 +1,12 @@
 module.exports = {
+  overrides: [
+    {
+      files: ["**/*.spec.js", "**/*.spec.jsx", "**/*.polyfills.js"],
+      env: {
+        jest: true,
+      },
+    },
+  ],
   root: true,
   env: { browser: true, es2020: true },
   extends: [
@@ -16,7 +24,7 @@ module.exports = {
     },
   },
   settings: { react: { version: "18.2" } },
-  plugins: ["react-refresh", "react"],
+  plugins: ["react-refresh", "react", "jest"],
   rules: {
     "no-unused-vars": "warn",
     "react-refresh/only-export-components": [
