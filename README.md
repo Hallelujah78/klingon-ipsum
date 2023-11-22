@@ -9,8 +9,6 @@ Klingon Ipsum is a simple React project to create random paragraphs of Klingon t
 
 ## Next Commit
 
-Added jest, rtl, jest-dom. Updated .eslintrc.cjs. Added App.test.js. Added .babelrc, jest-setup.js, jest-polyfills.js, and msw. Almost kinda maybe at the point where I could write a test.
-
 ## 21/11/23
 
 ## 6/11/23
