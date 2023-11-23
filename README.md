@@ -14,6 +14,11 @@ Klingon Ipsum is a simple React project to create random paragraphs of Klingon t
 - Fixed issue where tests accessing local storage would fail
   - my fetch request was checking for local storage before making the request.
 - Cleared local storage after each test is run.
+- Added a test for the loading spinner.
+- Added server.js to create a reusable createServer function with msw.
+- Added a data-testid to Loading.jsx.
+- Added handlers.js.
+- Modified createServer in server.js - it no longer dynamically creates handlers, but simply takes an array of handlers.
 
 ## 22/11/23
 
