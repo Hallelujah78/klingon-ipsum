@@ -9,7 +9,27 @@ Klingon Ipsum is a simple React project to create random paragraphs of Klingon t
 
 ## Next Commit
 
+## 23/11/23
+
+- Fixed issue where tests accessing local storage would fail
+  - my fetch request was checking for local storage before making the request.
+- Cleared local storage after each test is run.
+
+## 22/11/23
+
+- Added mock for uuid.
+- Now getting act warning
+- screen.debug is not rendering loading, but is rendering our loaded app
+- added renderComponent to App.test.js
+- added a test for input.
+
 ## 21/11/23
+
+- Added jest, rtl, jest-dom.
+- Updated .eslintrc.cjs.
+- Added App.test.js.
+- Added .babelrc, jest-setup.js, jest-polyfills.js, and msw.
+- Almost kinda maybe at the point where I could write a test.
 
 ## 6/11/23
 
