@@ -102,7 +102,7 @@ function App() {
     return (
       <div className="app">
         <section className="section-center">
-          <Loading />
+          <Loading data-testid="spinner" />
         </section>
       </div>
     );

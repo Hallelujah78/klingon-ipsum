@@ -1,10 +1,8 @@
 import { setupServer } from "msw/node";
-import { http, HttpResponse } from "msw";
+import { http } from "msw";
 
-const createServer = (handlerConfig) => {
-  const handlers = handlerConfig.map((config) => {
-    return http[config.method || "get"];
-  });
+const createServer = (handlers) => {
+  const server = setupServer(...handlers);
 
   beforeAll(() => {
     server.listen();
