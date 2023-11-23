@@ -46,6 +46,13 @@ afterAll(() => {
 });
 // is loading
 
+describe("while loading", () => {
+  // displays div.loading
+  test("a loading spinner is shown", async () => {
+    screen.logTestingPlaygroundURL();
+  });
+});
+
 // !isLoading && !isError && !showProgress
 // a button is visible
 // an input is visible

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Loading = () => {
   return (
     <Wrapper className="loading-container">
-      <div className="loading"></div>
+      <div data-testid="loading-spinner" className="loading"></div>
     </Wrapper>
   );
 };
