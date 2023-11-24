@@ -3,6 +3,7 @@ import App from "./App.jsx";
 import createServer from "./test/server.js";
 import handlers from "./test/handlers.js";
 import { http, HttpResponse } from "msw";
+import klingonWords from "./data/data.jsx";
 
 const renderComponent = async () => {
   render(<App />);
@@ -24,21 +25,21 @@ jest.mock("uuid", () => {
 });
 
 describe.only("while loading", () => {
-  createServer([
-    http.get(
-      "https://51da59d1-d13c-47cf-a520-6486e16c9a70.mock.pstmn.io/v1/home/klingon",
-      () => {
-        return HttpResponse.json({
-          data: klingonWords,
-        });
-      }
-    ),
-  ]);
+  // createServer([
+  //   http.get(
+  //     "https://51da59d1-d13c-47cf-a520-6486e16c9a70.mock.pstmn.io/v1/home/klingon",
+  //     () => {
+  //       return HttpResponse.json({
+  //         dictionary: klingonWords,
+  //       });
+  //     }
+  //   ),
+  // ]);
   // displays div.loading
   test("a loading spinner is shown", async () => {
-    screen.debug();
-    const spinner = await screen.findByTestId("spinner");
-    console.log(spinner);
+    render(<App />);
+
+    const spinner = await screen.findByTestId("loading-spinner");
 
     expect(spinner).toBeInTheDocument();
   });
