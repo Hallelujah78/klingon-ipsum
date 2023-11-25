@@ -24,23 +24,23 @@ jest.mock("uuid", () => {
   };
 });
 
-describe.only("while loading", () => {
-  // createServer([
-  //   http.get(
-  //     "https://51da59d1-d13c-47cf-a520-6486e16c9a70.mock.pstmn.io/v1/home/klingon",
-  //     () => {
-  //       return HttpResponse.json({
-  //         dictionary: klingonWords,
-  //       });
-  //     }
-  //   ),
-  // ]);
-  // displays div.loading
+describe("while loading", () => {
+  createServer([
+    http.get(
+      "https://51da59d1-d13c-47cf-a520-6486e16c9a70.mock.pstmn.io/v1/home/klingon",
+      () => {
+        return HttpResponse.json({
+          dictionary: klingonWords,
+        });
+      }
+    ),
+  ]);
+
   test("a loading spinner is shown", async () => {
     render(<App />);
 
     const spinner = await screen.findByTestId("loading-spinner");
-
+    screen.debug();
     expect(spinner).toBeInTheDocument();
   });
 });
@@ -54,6 +54,16 @@ describe.only("while loading", () => {
 // a progressbar is visible
 
 describe("after data has been fetched", () => {
+  createServer([
+    http.get(
+      "https://51da59d1-d13c-47cf-a520-6486e16c9a70.mock.pstmn.io/v1/home/klingon",
+      () => {
+        return HttpResponse.json({
+          dictionary: klingonWords,
+        });
+      }
+    ),
+  ]);
   test("an input is visible", async () => {
     await renderComponent();
 
