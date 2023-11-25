@@ -1,5 +1,4 @@
 import { setupServer } from "msw/node";
-import { http } from "msw";
 
 const createServer = (handlers) => {
   const server = setupServer(...handlers);

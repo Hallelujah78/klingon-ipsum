@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import App from "./App.jsx";
 import createServer from "./test/server.js";
-import handlers from "./test/handlers.js";
 import { http, HttpResponse } from "msw";
 import klingonWords from "./data/data.jsx";
 
@@ -78,11 +77,3 @@ describe("after data has been fetched", () => {
     // expect(button).toBeInTheDocument();
   });
 });
-
-const pause = () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 200);
-  });
-};

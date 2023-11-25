@@ -1,23 +1,29 @@
 module.exports = {
   overrides: [
     {
-      files: ["**/*.spec.js", "**/*.spec.jsx", "**/*.polyfills.js"],
+      files: [
+        "**/*.spec.js",
+        "**/*.spec.jsx",
+        "**/*.test.js",
+        "**/*.polyfills.js",
+        "**/test/*",
+      ],
       env: {
         jest: true,
+        node: true,
       },
     },
   ],
   root: true,
-  env: { browser: true, es2020: true },
+  env: { browser: true, es2020: true }, // Keep browser and es2020 environments at the root level
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
   ],
-
   parserOptions: {
-    ecmaVersion: "latest",
+    ecmaVersion: 12, // Specify the ECMAScript version
     sourceType: "module",
     ecmaFeatures: {
       jsx: true,
