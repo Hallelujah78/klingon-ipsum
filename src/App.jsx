@@ -18,7 +18,7 @@ import { useFetch } from "./utils/useFetch";
 // components
 import { Loading } from "./components/Loading";
 import Error from "./components/Error";
-import { Footer } from "./components/Footer";
+import Footer from "./components/Footer";
 
 import "./styles/main.css";
 import Paragraph from "./components/Paragraph";
