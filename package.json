@@ -13,7 +13,7 @@
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "jest --watch"
   },
   "browserslist": {
     "production": [
