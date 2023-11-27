@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
-export const Loading = () => {
+const Loading = () => {
   return (
     <Wrapper className="loading-container">
       <div data-testid="loading-spinner" className="loading"></div>
     </Wrapper>
   );
 };
+
+export default Loading;
 
 const Wrapper = styled.div`
   position: absolute;

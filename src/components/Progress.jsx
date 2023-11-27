@@ -8,7 +8,7 @@ const Progress = ({ progress, progressText }) => {
   return (
     <Wrapper>
       <progress value={progress} max="100" />
-      <p>
+      <p data-testid="progress-text">
         {progressText}: {progress}% complete
       </p>
     </Wrapper>
