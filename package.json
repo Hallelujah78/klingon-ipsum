@@ -13,7 +13,8 @@
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "test:debug": "node --inspect-brk test --runInBand --no-cache"
   },
   "browserslist": {
     "production": [
