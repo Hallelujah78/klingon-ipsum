@@ -16,7 +16,7 @@ import { generateUuids } from "./utils/generateUuids.js";
 import { useFetch } from "./utils/useFetch";
 
 // components
-import { Loading } from "./components/Loading";
+import Loading from "./components/Loading";
 import Error from "./components/Error";
 import Footer from "./components/Footer";
 
@@ -134,7 +134,7 @@ function App() {
             <button className="btn" onClick={handleClick}>
               Dochvetlh vIneHb! - I want that thing!
             </button>
-            <div ref={alertRef} className="alert"></div>
+            <div data-testid="alert" ref={alertRef} className="alert"></div>
             <div className="progress">
               {showProgress ? (
                 <Progress progress={progress} progressText={progressText} />

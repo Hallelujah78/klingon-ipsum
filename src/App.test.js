@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import user from "@testing-library/user-event";
 import App from "./App.jsx";
 import createServer from "./test/server.js";
 import { http, HttpResponse } from "msw";
@@ -63,17 +64,46 @@ describe("after data has been fetched", () => {
       }
     ),
   ]);
+
   test("an input is visible", async () => {
     await renderComponent();
-
     const input = await screen.findByRole("spinbutton");
     expect(input).toBeInTheDocument();
   });
 
   test("a button is visible", async () => {
     await renderComponent();
-    screen.debug();
-    // const button = await screen.findByRole("button");
-    // expect(button).toBeInTheDocument();
+
+    const button = await screen.findByRole("button", {
+      name: /i want that thing!/i,
+    });
+    expect(button).toBeInTheDocument();
+  });
+
+  test("if the user attempts to enter nonnumeric values in the input, the value is not updated and a warning is displayed", async () => {
+    await renderComponent();
+
+    const input = await screen.findByRole("spinbutton");
+    const button = await screen.findByRole("button", {
+      name: /i want that thing!/i,
+    });
+
+    await user.click(input);
+    await user.keyboard("abcdefg");
+    await user.click(button);
+
+    const alert = await screen.findByTestId("alert");
+
+    expect(input).toHaveValue(null);
+    expect(alert).toBeInTheDocument();
+    expect(alert).toHaveTextContent("please enter a positive number");
+  });
+
+  test("if the user attempts to enter nonnumeric values in the input, the value is not updated", async () => {
+    await renderComponent();
+    const input = await screen.findByRole("spinbutton");
+    await user.click(input);
+    await user.keyboard("abcdefg");
+    expect(input).toHaveValue(null);
   });
 });
