@@ -92,9 +92,9 @@ function App() {
     setProgress(0);
 
     if (paragraphs) {
-      displayAlert("Qapla' - Success!", "success", alertRef.current);
       setShowProgress(false);
       setRenderParagraphs(true);
+      displayAlert("Qapla' - Success!", "success", alertRef.current);
     }
   };
 

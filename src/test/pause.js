@@ -1,8 +1,8 @@
-const pause = () => {
+const pause = (milliseconds) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve();
-    }, 200);
+    }, milliseconds);
   });
 };
 
