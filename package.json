@@ -10,6 +10,7 @@
     "uuid": "^9.0.1"
   },
   "scripts": {
+    "coverage": "npm run test -- --coverage",
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview",

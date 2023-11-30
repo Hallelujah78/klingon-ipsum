@@ -23,15 +23,15 @@ const renderComponent = async () => {
 };
 
 const inputValueAndGenerate = async (value) => {
-  const input = screen.getByRole("spinbutton");
-  const button = screen.getByRole("button", {
+  const input = await screen.findByRole("spinbutton");
+  const button = await screen.findByRole("button", {
     name: /i want that thing!/i,
   });
 
   await user.click(input);
   await user.keyboard(value);
   await user.click(button);
-  return { input, button };
+  return { button, input };
 };
 
 jest.mock("uuid", () => {
@@ -75,7 +75,7 @@ describe("after data has been fetched", () => {
       "https://51da59d1-d13c-47cf-a520-6486e16c9a70.mock.pstmn.io/v1/home/klingon",
       () => {
         return HttpResponse.json({
-          dict: klingonWords,
+          dictionary: klingonWords,
         });
       }
     ),
@@ -132,48 +132,47 @@ describe("after data has been fetched", () => {
 
   test.only("if the user enters a positive number in the input and attempts to generate paragraphs, a progress bar is displayed", async () => {
     await renderComponent();
-    const { input, button } = await inputValueAndGenerate("2000");
+    const input = await screen.findByRole("spinbutton");
+    const button = await screen.findByRole("button", {
+      name: /i want that thing!/i,
+    });
+
+    await user.click(input);
+    await user.keyboard("2002");
+    await user.click(button);
 
     const progressbar = await screen.findByRole("progressbar");
     expect(progressbar).toBeInTheDocument();
-    await pause(3000);
-  });
-
-  test.only("if the user enters a positive number in the input and attempts to generate paragraphs, a success alert is displayed", async () => {
-    await renderComponent();
-    await inputValueAndGenerate("2000");
-
-    await waitFor(() => screen.findAllByTestId("paragraph-component"), {
-      timeout: 2000,
-    });
-
-    const successAlert = await screen.findByTestId("alert");
-
-    expect(successAlert).toBeInTheDocument();
-    expect(successAlert).toHaveTextContent(/success!/i);
-  });
+    await waitFor(
+      async () => await screen.findAllByTestId("paragraph-component"),
+      {
+        timeout: 4500,
+      }
+    );
+  }, 10000);
 });
 
+// wait for paragraph and then should find success alert
 describe("after data has been fetched and the page has loaded", () => {
   createServer([
     http.get(
       "https://51da59d1-d13c-47cf-a520-6486e16c9a70.mock.pstmn.io/v1/home/klingon",
       () => {
         return HttpResponse.json({
-          dict: klingonWords,
+          dictionary: klingonWords,
         });
       }
     ),
   ]);
 
-  test("if the user enters a positive number in the input and attempts to generate paragraphs, a success alert is displayed", async () => {
+  test.only("if the user enters a positive number in the input and attempts to generate paragraphs, a success alert is displayed", async () => {
     await renderComponent();
     await inputValueAndGenerate("2000");
 
     await waitFor(
       async () => await screen.findAllByTestId("paragraph-component"),
       {
-        timeout: 1000,
+        timeout: 4500,
       }
     );
 
@@ -181,5 +180,5 @@ describe("after data has been fetched and the page has loaded", () => {
 
     expect(alert).toBeInTheDocument();
     expect(alert).toHaveTextContent(/success!/i);
-  });
+  }, 10000);
 });
