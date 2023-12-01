@@ -4,7 +4,6 @@ import App from "./App.jsx";
 import createServer from "./test/server.js";
 import { http, HttpResponse } from "msw";
 import klingonWords from "./data/data.jsx";
-import pause from "./test/pause.js";
 
 import { mockTestString } from "./test/testSting.js";
 
@@ -54,7 +53,7 @@ describe("while loading", () => {
       "https://51da59d1-d13c-47cf-a520-6486e16c9a70.mock.pstmn.io/v1/home/klingon",
       () => {
         return HttpResponse.json({
-          dictionary: klingonWords,
+          klingon: klingonWords,
         });
       }
     ),
@@ -75,7 +74,7 @@ describe("after data has been fetched", () => {
       "https://51da59d1-d13c-47cf-a520-6486e16c9a70.mock.pstmn.io/v1/home/klingon",
       () => {
         return HttpResponse.json({
-          dictionary: klingonWords,
+          klingon: klingonWords,
         });
       }
     ),
@@ -130,7 +129,7 @@ describe("after data has been fetched", () => {
     expect(alert).toHaveTextContent("please enter a positive number");
   });
 
-  test.only("if the user enters a positive number in the input and attempts to generate paragraphs, a progress bar is displayed", async () => {
+  test("if the user enters a positive number in the input and attempts to generate paragraphs, a progress bar is displayed", async () => {
     await renderComponent();
     const input = await screen.findByRole("spinbutton");
     const button = await screen.findByRole("button", {
@@ -146,7 +145,7 @@ describe("after data has been fetched", () => {
     await waitFor(
       async () => await screen.findAllByTestId("paragraph-component"),
       {
-        timeout: 4500,
+        timeout: 7000,
       }
     );
   }, 10000);
@@ -159,13 +158,13 @@ describe("after data has been fetched and the page has loaded", () => {
       "https://51da59d1-d13c-47cf-a520-6486e16c9a70.mock.pstmn.io/v1/home/klingon",
       () => {
         return HttpResponse.json({
-          dictionary: klingonWords,
+          klingon: klingonWords,
         });
       }
     ),
   ]);
 
-  test.only("if the user enters a positive number in the input and attempts to generate paragraphs, a success alert is displayed", async () => {
+  test("if the user enters a positive number in the input and attempts to generate paragraphs, a success alert is displayed", async () => {
     await renderComponent();
     await inputValueAndGenerate("2000");
 

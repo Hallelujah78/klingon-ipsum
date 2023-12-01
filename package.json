@@ -15,7 +15,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "jest --watch",
-    "test:debug": "node --inspect-brk test --runInBand --no-cache"
+    "test:debug": "jest --runInBand"
   },
   "browserslist": {
     "production": [
