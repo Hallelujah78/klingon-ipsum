@@ -7,7 +7,7 @@ import styled from "styled-components";
 const Progress = ({ progress, progressText }) => {
   return (
     <Wrapper>
-      <progress value={progress} max="100" />
+      <progress data-testid="progress-bar" value={progress} max="100" />
       <p data-testid="progress-text">
         {progressText}: {progress}% complete
       </p>

@@ -125,13 +125,18 @@ function App() {
             </p>
 
             <input
+              data-testid="number-input"
               placeholder="enter number of words"
               onChange={(e) => setWords(parseInt(e.target.value || ""))}
               value={words}
               type="number"
               ref={inputRef}
             />
-            <button className="btn" onClick={handleClick}>
+            <button
+              data-test-id="generate-button"
+              className="btn"
+              onClick={handleClick}
+            >
               Dochvetlh vIneHb! - I want that thing!
             </button>
             <div data-testid="alert" ref={alertRef} className="alert"></div>
