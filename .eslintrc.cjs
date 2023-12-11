@@ -1,4 +1,5 @@
 module.exports = {
+  ignorePatterns: [".eslintrc.cjs"],
   overrides: [
     {
       files: [
@@ -7,6 +8,7 @@ module.exports = {
         "**/*.test.js",
         "**/*.polyfills.js",
         "**/test/*",
+        "**/*.cy.js",
       ],
       env: {
         jest: true,
