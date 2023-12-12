@@ -42,8 +42,8 @@ describe("klingon ipsum single page app test", () => {
 
     // generate 128 words, should create 1-6 paragraphs inclusive
 
-    cy.get('[data-testid="number-input"]').clear().type(128);
-
+    cy.get('[data-testid="number-input"]').clear();
+    cy.get('[data-testid="number-input"]').type(128);
     cy.get('[data-test-id="generate-button"]').click();
 
     cy.get('[data-testid="progress-bar"]').should("exist");

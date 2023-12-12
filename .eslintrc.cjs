@@ -1,4 +1,4 @@
-const config = {
+module.exports = {
   overrides: [
     {
       files: [
@@ -39,5 +39,3 @@ const config = {
     ],
   },
 };
-
-export default config;
