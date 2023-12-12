@@ -23,7 +23,7 @@ module.exports = {
     "plugin:react-hooks/recommended",
   ],
   parserOptions: {
-    ecmaVersion: 12, // Specify the ECMAScript version
+    ecmaVersion: "latest", // Specify the ECMAScript version
     sourceType: "module",
     ecmaFeatures: {
       jsx: true,
