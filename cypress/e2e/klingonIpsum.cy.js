@@ -1,5 +1,5 @@
 describe("klingon ipsum single page app test", () => {
-  it("the user can generate a paragraph by inputting the number of words", () => {
+  beforeEach(() => {
     cy.clock();
     cy.visit("http://localhost:3000/");
 
@@ -14,7 +14,8 @@ describe("klingon ipsum single page app test", () => {
         });
       }
     );
-
+  });
+  it("the user can generate a paragraph by inputting the number of words", () => {
     cy.get('[data-testid="loading-spinner"]').should("exist");
     cy.get('[data-testid="loading-spinner"]').should("not.exist");
     cy.get('[data-testid="alert"]').should("have.text", "");
@@ -58,5 +59,30 @@ describe("klingon ipsum single page app test", () => {
       .should("exist");
 
     cy.get('[data-testid="alert"]').should("have.text", "");
+  });
+
+  it.only("alerts the user when the input is incorrect", () => {
+    // empty input
+    cy.get('[data-testid="number-input"]').clear();
+    cy.get('[data-test-id="generate-button"]').click();
+    cy.get('[data-testid="alert"]').should("contain.text", "positive number");
+    cy.tick(3000);
+    cy.get('[data-testid="alert"]').should("contain.text", "");
+
+    // 0 value
+    cy.get('[data-testid="number-input"]').clear();
+    cy.get('[data-testid="number-input"]').type(0);
+    cy.get('[data-test-id="generate-button"]').click();
+    cy.get('[data-testid="alert"]').should("contain.text", "positive number");
+    cy.tick(3000);
+    cy.get('[data-testid="alert"]').should("contain.text", "");
+
+    // negative values
+    cy.get('[data-testid="number-input"]').clear();
+    cy.get('[data-testid="number-input"]').type(-10);
+    cy.get('[data-test-id="generate-button"]').click();
+    cy.get('[data-testid="alert"]').should("contain.text", "positive number");
+    cy.tick(3000);
+    cy.get('[data-testid="alert"]').should("contain.text", "");
   });
 });
