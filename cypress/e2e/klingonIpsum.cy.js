@@ -2,7 +2,8 @@ describe("klingon ipsum single page app test", () => {
   beforeEach(() => {
     cy.clock();
     cy.visit("http://localhost:3000/");
-
+  });
+  it("the user can generate a paragraph by inputting the number of words", () => {
     cy.intercept(
       "https://51da59d1-d13c-47cf-a520-6486e16c9a70.mock.pstmn.io/v1/home/klingon",
       (req) => {
@@ -14,8 +15,6 @@ describe("klingon ipsum single page app test", () => {
         });
       }
     );
-  });
-  it("the user can generate a paragraph by inputting the number of words", () => {
     cy.get('[data-testid="loading-spinner"]').should("exist");
     cy.get('[data-testid="loading-spinner"]').should("not.exist");
     cy.get('[data-testid="alert"]').should("have.text", "");
@@ -61,7 +60,18 @@ describe("klingon ipsum single page app test", () => {
     cy.get('[data-testid="alert"]').should("have.text", "");
   });
 
-  it.only("alerts the user when the input is incorrect", () => {
+  it("alerts the user when the input is incorrect", () => {
+    cy.intercept(
+      "https://51da59d1-d13c-47cf-a520-6486e16c9a70.mock.pstmn.io/v1/home/klingon",
+      (req) => {
+        req.reply({
+          statusCode: 200,
+          fixture: "data.json",
+          delay: 100,
+          throttleKbps: 200,
+        });
+      }
+    );
     // empty input
     cy.get('[data-testid="number-input"]').clear();
     cy.get('[data-test-id="generate-button"]').click();
@@ -84,5 +94,19 @@ describe("klingon ipsum single page app test", () => {
     cy.get('[data-testid="alert"]').should("contain.text", "positive number");
     cy.tick(3000);
     cy.get('[data-testid="alert"]').should("contain.text", "");
+  });
+
+  // data request error state
+  it("renders an error component when the data fetching fails/not found", () => {
+    cy.intercept(
+      "https://51da59d1-d13c-47cf-a520-6486e16c9a70.mock.pstmn.io/v1/home/klingon",
+      (req) => {
+        req.reply({
+          statusCode: 404,
+        });
+      }
+    );
+    cy.get('[data-testid="error-message"]').should("exist");
+    cy.get('[data-testid="refresh-button"]').should("exist");
   });
 });
