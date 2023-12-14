@@ -3,6 +3,17 @@
   "version": "0.2.0",
   "private": true,
   "type": "module",
+  "description": "A simple Klingon Ipsum generator in React with Vite, Cypress, Jest/RTL.",
+  "homepage": "https://gwib-klingon-ipsum-react.netlify.app/",
+  "author": {
+    "name": "Gavan Browne",
+    "email": "gavan.browne@gmail.com",
+    "url": "https://gwib-personal-portfolio-react.netlify.app/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hallelujah78/klingon-ipsum"
+  },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
