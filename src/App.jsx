@@ -19,6 +19,7 @@ import { useFetch } from "./utils/useFetch";
 import Loading from "./components/Loading";
 import Error from "./components/Error";
 import Footer from "./components/Footer";
+import JumpTop from "./components/JumpTop.jsx";
 
 import "./styles/main.css";
 import Paragraph from "./components/Paragraph";
@@ -153,6 +154,7 @@ function App() {
               })}
             </div>
           ) : null}
+          <JumpTop />
         </Wrapper>
         <Footer />
       </>
