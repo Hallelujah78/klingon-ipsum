@@ -22,6 +22,7 @@ const JumpTop = () => {
   return (
     <Wrapper>
       <FaChevronCircleUp
+        data-test="jump-to-top-button"
         onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}
         className="button-top hide"
       />

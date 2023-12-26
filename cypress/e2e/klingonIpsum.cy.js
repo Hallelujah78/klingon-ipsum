@@ -109,4 +109,37 @@ describe("klingon ipsum single page app test", () => {
     cy.get('[data-testid="error-message"]').should("exist");
     cy.get('[data-testid="refresh-button"]').should("exist");
   });
+
+  it.only("renders JumpTop when the user scrolls down the page", () => {
+    cy.intercept(
+      "https://51da59d1-d13c-47cf-a520-6486e16c9a70.mock.pstmn.io/v1/home/klingon",
+      (req) => {
+        req.reply({
+          statusCode: 200,
+          fixture: "data.json",
+          delay: 50,
+          throttleKbps: 200,
+        });
+      }
+    );
+    cy.clock().then((clock) => {
+      clock.restore();
+    });
+
+    cy.get('[data-test="jump-to-top-button"]').should("not.be.visible");
+    cy.get('[data-testid="number-input"]').clear();
+    cy.get('[data-testid="number-input"]').type(500);
+    cy.get('[data-test-id="generate-button"]').click();
+
+    cy.get('[data-testid="alert"]')
+      .contains(/success/i)
+      .should("exist");
+    cy.scrollTo("0%", "40%");
+    cy.get('[data-test="jump-to-top-button"]').should("not.be.visible");
+    cy.scrollTo("bottom");
+
+    cy.get('[data-test="jump-to-top-button"]').should("be.visible");
+    cy.get('[data-test="jump-to-top-button"]').click();
+    cy.get('[data-test="jump-to-top-button"]').should("not.be.visible");
+  });
 });

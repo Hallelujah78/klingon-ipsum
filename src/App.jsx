@@ -120,7 +120,9 @@ function App() {
       <>
         <Wrapper className="app">
           <section className="section-center">
-            <h1 className="title">Klingon Ipsum</h1>
+            <h1 data-test="app-title" className="title">
+              Klingon Ipsum
+            </h1>
             <p className="quote">
               Qo&apos;mey poSmoH Hol - language opens worlds
             </p>
